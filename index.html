@@ -1,0 +1,376 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+
+	
+    <meta charset="utf-8">
+    <title>Synapse Doc Hub</title>
+    <link rel="icon" href="articles/fabric_16_color.svg" type="image/x-icon" >
+	
+
+
+    <style>
+	
+		
+	
+
+
+
+        body {
+            background-color: #FFF;
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0px;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+        }
+
+        .logomain {
+        background-color:#333333;
+        position:relative;
+        padding-top:3px;
+        }
+        .logomain{
+        margin-left: 0px;
+        margin-top:0px; 
+        margin-bottom:0px; 
+        text-align:center;
+        }
+
+        .header-container {
+        max-width: 550px; /* Set a specific width */
+        margin: 0px auto; /* Center the container */
+        text-align: center;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        position: relative;
+        }
+
+        .header-container::before {
+            content: ""; 
+            display: block;
+            width: 100%;
+            height: 10px; /* Thickness of the blue line */
+            background-color: #0078D4; /* Blue color */
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .header-container img {
+            display: block;
+            margin: auto;
+            width: 120px; /* Adjust image width */
+            height: auto;
+        }
+
+        .header-container h4 {
+            margin-top: 0px; /* Space below image */
+            font-size: 40px;
+            font-weight: bold;
+            color: #000; /* Ensure black text */
+            background-color: #fff; /* Match background */
+            padding: 0px 0;
+        }
+
+
+        .section {
+            margin-top: 40px;
+        }
+
+        h2 {
+            border-bottom: 3px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .box-container {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            gap: 10px;
+            padding-bottom: 20px;
+            scroll-behavior: smooth;
+        }
+
+        .box {
+            min-width: 250px;
+            height: 120px;
+            border: 2px solid #888;
+            background: linear-gradient(to bottom, #ffffff, #e1e1e1);
+            box-shadow: 0 0 5px #888;
+            text-align: center;
+            padding: 10px;
+            flex: 1;
+            transition: transform 0.3s;
+        }
+
+        .box:hover {
+            
+            background-color: #f8f8f8;
+            display:table;
+            height:105px;
+            font-size:15px;
+                font-weight:bold;
+                
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .nav-buttons button {
+            padding: 8px 15px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #0078D4;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .nav-buttons button:hover {
+            background-color: #005a9e;
+        }
+
+        .footer {
+            margin-top: 50px;
+            background-color: #333;
+            color: white;
+            padding: 15px;
+        }
+
+
+
+
+
+
+			#event-boxes .box {
+				background: linear-gradient(to bottom, #0078d4, #005a9e); /* blue gradient */
+				color: white;
+				border: 2px solid #004e8c;
+				box-shadow: 0 0 5px #0078d4;
+			}
+
+			#event-boxes .box:hover {
+				background: #005a9e;
+				transform: scale(1.03);
+			}
+
+
+			/* Flip animation */
+			@keyframes flipBox {
+				0%   { transform: rotateY(0deg); }
+				50%  { transform: rotateY(180deg); }
+				100% { transform: rotateY(360deg); }
+			}
+
+			.box.flip-animate {
+				animation: flipBox 1s ease-in-out;
+				transform-style: preserve-3d;
+			}
+
+
+
+
+
+
+
+    </style>
+
+
+
+
+</head>
+
+<body>
+
+
+    <div class="logomain">
+    <img src="articles/Azure-Synapse-Analytics.svg" width="170" height="150" alt="team_logo_lar"></div>
+	
+
+
+    <div class="header-container">
+        <h4>Synapse Doc Hub</h4>
+    </div>
+    </div>
+
+    <div class="container">
+	
+
+      
+
+        <!-- How-To Section -->
+        <div class="section">
+            <h2>Fabric How-To</h2>
+            <div class="box-container" id="howto-boxes">
+                <!-- Boxes dynamically added via JavaScript -->
+            </div>
+            <div class="nav-buttons">
+                <button onclick="scrollLeft('howto-boxes')">⬅ Prev</button>
+                <button onclick="scrollRight('howto-boxes')">Next ➡</button>
+            </div>
+        </div>
+
+        <!-- General Section -->
+        <div class="section">
+            <h2>Fabric Everything Else</h2>
+            <div class="box-container" id="general-boxes">
+                <!-- Boxes dynamically added via JavaScript -->
+            </div>
+            <div class="nav-buttons">
+                <button onclick="scrollLeft('general-boxes')">⬅ Prev</button>
+                <button onclick="scrollRight('general-boxes')">Next ➡</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        Created by Data & AI CSA: Victor Adeyanju
+    </div>
+
+    <script>
+        // Sample Data for Each Section
+                const data = {
+			
+            "howto": [
+                "MongoDB Atlas Mirror to OneLake",
+                "Coming Soon",
+		            "Coming Soon",    
+                "Coming Soon"
+      
+                
+            ],
+            "general": [
+                "Coming Soon",
+                "Coming Soon",
+                "Coming Soon"
+             
+            ]
+        };
+
+
+
+	    let eventBoxes = []; // GLOBAL to store references for flip
+
+        // Function to Populate Boxes with Clickable Links
+        function populateBoxes(sectionId, topics) {
+			const container = document.getElementById(sectionId);
+
+			topics.forEach(topic => {
+				const box = document.createElement("div");
+				box.classList.add("box");
+
+				// Create a link that wraps the entire box
+				const link = document.createElement("a");
+				link.target = "_blank"; 
+				link.style.textDecoration = "none";
+				link.style.color = "inherit";
+				link.style.display = "block";
+				link.style.width = "100%";
+				link.style.height = "100%";
+
+				// Use custom paths for event-boxes 
+				if (sectionId === "event-boxes") {
+					const customEventPaths = {
+					
+					};
+					link.href = customEventPaths[topic] || "#"; // fallback to "#" if topic not mapped
+				} else {
+					// Default behavior for all other sections
+					link.href = `articles/${topic.replace(/\s+/g, '-').toLowerCase()}.html`;
+				}
+
+				// Add content inside the link
+				link.innerHTML = `<h3>${topic}</h3><p>Click for more info</p>`;
+
+				box.appendChild(link);
+				container.appendChild(box);
+				
+				
+				if (sectionId === "event-boxes") {
+            eventBoxes.push(box);
+        }
+			});
+		}
+
+
+        // Populate All Sections
+        populateBoxes("howto-boxes", data.howto);
+        populateBoxes("general-boxes", data.general);
+
+        // Scroll Functions
+        function scrollLeft(containerId) {
+            document.getElementById(containerId).scrollBy({ left: -300, behavior: 'smooth' });
+        }
+
+        function scrollRight(containerId) {
+            document.getElementById(containerId).scrollBy({ left: 300, behavior: 'smooth' });
+        }
+		
+		
+		document.querySelectorAll('.hover-box').forEach(box => {
+    const originalText = box.textContent;
+    box.addEventListener('mouseenter', () => {
+        box.textContent = 'Go ➡';
+    });
+    box.addEventListener('mouseleave', () => {
+        box.textContent = originalText;
+    });
+});
+
+
+
+		setInterval(() => {
+			eventBoxes.forEach(box => {
+				box.classList.add("flip-animate");
+
+				// Remove after animation so it can re-trigger
+				setTimeout(() => {
+					box.classList.remove("flip-animate");
+				}, 1000); // match the animation duration
+			});
+		}, 20000); // every 20 seconds
+
+
+    </script>
+
+<!-- Collapsible disclaimer -->
+  <div id="disclaimer" style="margin-top: 2rem;">
+    <button onclick="toggleDisclaimer()" style="font-size: 1rem;">Disclaimer</button>
+    <div id="disclaimerContent" style="display: none; padding: 1rem; background: #f9f9f9; border: 1px solid #ddd;">
+     
+      <p>
+        This site is provided for the purpose of illustration and learning and warrants no liability on the creators or their company. THIS SITE AND ANY RELATED INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE. Your software product in which the Site Code is embedded; and (iii) to indemnify, hold harmless, and defend Us and Our suppliers from and against any claims or lawsuits, including attorneys’ fees, that arise or result from the use of this SITE.  
+      </p>
+    </div>
+  </div>
+
+  <script>
+    function toggleDisclaimer() {
+      const div = document.getElementById("disclaimerContent");
+      div.style.display = div.style.display === "none" ? "block" : "none";
+    }
+  </script>
+
+  <!-- Footer with privacy link -->
+  <footer style="margin-top: 3rem; padding: 1rem; text-align: center; font-size: 0.9rem; color: #555;">
+    © 2025 /azuresynapsepoc.github.io · 
+
+  </footer>
+
+
+
+
+
+	    
+</body>
+</html>
