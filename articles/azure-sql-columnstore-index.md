@@ -54,7 +54,7 @@ REBUILD
 WITH (DATA_COMPRESSION = PAGE);  --Or ROW 
 ```
 
-# Test Case 3: Rebuild Rowstore Tables
+# Test Case 3: Rebuild Heap Tables
 Although the potential space savings may not be as substantial as those achieved through columnstore or compression techniques, it is worthwhile to evaluate heap tables for fragmentation, a factor often overlooked. 
 The following script identifies heap tables exhibiting significant fragmentation, providing a clear indication of candidates that would benefit from a rebuild.
 
