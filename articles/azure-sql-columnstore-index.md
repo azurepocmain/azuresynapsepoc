@@ -15,6 +15,17 @@ Reference:  <a href="https://learn.microsoft.com/en-us/sql/relational-databases/
 For instance, the following table illustrates a comparison between rowstore and columnstore formats, highlighting the dramatic reduction in storage size achieved with columnstore. Particularly for columns containing similar data types or 
 integers, the space savings can be significant, often resulting in exponential compression benefits.
 
+
+Converting table to a clustered column store:: 
+
+```CREATE CLUSTERED COLUMNSTORE INDEX CCI_Sales_Summary ON dbo.Sales_Summary;```
+
+Important Considerations:
+All existing nonclustered indexes will remain unless explicitly dropped.
+Primary key and unique constraints that rely on the clustered index will be dropped unless they are supported by a nonclustered index.
+You cannot have both a clustered B-tree index and a clustered columnstore index on the same table.
+
+
 ## Rowstore: 
 name	rows	reserved	data	index_size	unused
 VicSummaryChange4	51200	76296 KB	76216 KB	8 KB	72 KB
