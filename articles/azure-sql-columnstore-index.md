@@ -21,9 +21,9 @@ Converting table to a clustered column store:
 ```CREATE CLUSTERED COLUMNSTORE INDEX CCI_Sales_Summary ON dbo.Sales_Summary;```
 
 Important Considerations:
-All existing nonclustered indexes will remain unless explicitly dropped.
-Primary key and unique constraints that rely on the clustered index will be dropped unless they are supported by a nonclustered index.
-You cannot have both a clustered B-tree index and a clustered columnstore index on the same table.
+- All existing nonclustered indexes will remain unless explicitly dropped.
+- Primary key and unique constraints that rely on the clustered index will be dropped unless they are supported by a nonclustered index.
+- You cannot have both a clustered B-tree index and a clustered columnstore index on the same table.
 
 
 ## Rowstore: 
