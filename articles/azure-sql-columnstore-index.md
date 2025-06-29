@@ -16,7 +16,7 @@ For instance, the following table illustrates a comparison between rowstore and 
 integers, the space savings can be significant, often resulting in exponential compression benefits.
 
 
-Converting table to a clustered column store:: 
+Converting table to a clustered column store:
 
 ```CREATE CLUSTERED COLUMNSTORE INDEX CCI_Sales_Summary ON dbo.Sales_Summary;```
 
