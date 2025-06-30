@@ -119,3 +119,13 @@ Here’s why:
 -	Lack of Optimizations: Spark treats Python UDFs as "black boxes," which means it can’t apply its built-in optimization strategies, such as Catalyst optimizations or code generation. This results in slower performance compared to native or pandas-based approaches.
 -	Single-threaded Execution: Python UDFs run single-threaded per task, so you miss out on some parallelism and speed benefits that Spark’s internal processing (Tungsten engine) provides.
 Using pandas functions (with pandas UDFs or built-in Spark functions), when suitable, can help bypass these bottlenecks. Pandas UDFs utilize Apache Arrow to efficiently transfer data between JVM and Python, reducing serialization overhead and enabling vectorized operations for much better performance. For many data transformation tasks, leveraging pandas or native Spark methods can make your code not only faster but also more scalable and maintainable.
+
+
+
+
+***DISCLAIMER: Sample Code is provided for the purpose of illustration only and is not intended to be used in a production environment unless thorough testing has been conducted by the app and database teams. 
+THIS SAMPLE CODE AND ANY RELATED INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS 
+FOR A PARTICULAR PURPOSE. We grant You a nonexclusive, royalty-free right to use and modify the Sample Code and to reproduce and distribute the object code form of the Sample Code, provided that. You agree: (i) 
+to not use Our name, logo, or trademarks to market Your software product in which the Sample Code is embedded; (ii) to include a valid copyright notice on Your software product in which the Sample Code is 
+embedded; and (iii) to indemnify, hold harmless, and defend Us and Our suppliers from and against any claims or lawsuits, including attorneys fees, that arise or result from the use or distribution or use of the 
+Sample Code.***
