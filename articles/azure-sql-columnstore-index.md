@@ -26,6 +26,8 @@ Important Considerations:
 - You cannot have both a clustered B-tree index and a clustered columnstore index on the same table.
 
 
+# Notice the size difference between the Rowstore and Columnstore:
+
 ## Rowstore: 
 name	rows	reserved	data	index_size	unused
 VicSummaryChange4	51200	76296 KB	76216 KB	8 KB	72 KB
@@ -38,6 +40,8 @@ VicSummaryChange4	51200	76296 KB	76216 KB	8 KB	72 KB
 name	rows	reserved	data	index_size	unused
 VicSummaryChange4	51200	328 KB	168 KB	0 KB	160 KB
 ![image](https://github.com/user-attachments/assets/8be19a45-6399-49db-aaa3-2ae831a9dac5)
+
+
 
 # Converting a Clustered Primary Key to a Clustered Columnstore Index
 ## Step 1: Verify the name of the existing primary key.
