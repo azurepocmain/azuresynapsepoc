@@ -39,6 +39,26 @@ name	rows	reserved	data	index_size	unused
 VicSummaryChange4	51200	328 KB	168 KB	0 KB	160 KB
 ![image](https://github.com/user-attachments/assets/8be19a45-6399-49db-aaa3-2ae831a9dac5)
 
+# Converting a Clustered Primary Key to a Clustered Columnstore Index
+## Step 1: Verify the name of the existing primary key.
+```
+SELECT * FROM sys.key_constraints a where a.parent_object_id=object_id('EmployeesTest')
+```
+
+
+## Step 2: Drop the existing primary key (which is clustered).
+`ALTER TABLE EmployeesTest DROP CONSTRAINT PK__Employee__7AD04FF1310F26FC; `
+
+
+## Step 3: Create a clustered columnstore index.
+`CREATE CLUSTERED COLUMNSTORE INDEX CCI_EmployeesTest ON EmployeesTest;`
+
+## Step 4: Recreate the primary key as a nonclustered index.
+`ALTER TABLE EmployeesTest
+ADD CONSTRAINT PK_EmployeesTest PRIMARY KEY NONCLUSTERED (EmployeeID);`
+
+
+
 
 # Test Case 2: Table & Index ROW & PAGE Level Compression
 
@@ -96,6 +116,9 @@ After performing the recommended rebuild operation using the corresponding comma
 
 ## Finally: 
 To ensure optimal results and compatibility within your environment, it is essential to conduct thorough testing at each stage of the process.
+
+
+
 
 
 ***DISCLAIMER: Sample Code is provided for the purpose of illustration only and is not intended to be used in a production environment unless thorough testing has been conducted by the app and database teams. 
