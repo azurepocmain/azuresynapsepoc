@@ -55,7 +55,8 @@ SELECT * FROM sys.key_constraints a where a.parent_object_id=object_id('Employee
 
 ## Step 4: Recreate the primary key as a nonclustered index.
 `ALTER TABLE EmployeesTest
-ADD CONSTRAINT PK_EmployeesTest PRIMARY KEY NONCLUSTERED (EmployeeID);`
+ADD CONSTRAINT PK_EmployeesTest PRIMARY KEY NONCLUSTERED (EmployeeID) WITH ( DATA_COMPRESSION =PAGE);
+`
 
 
 
